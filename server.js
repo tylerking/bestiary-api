@@ -1,4 +1,4 @@
-// Loads the configuration from config.env to process.env
+// load config .env to process.env
 require('dotenv').config()
 
 const express = require('express') 
