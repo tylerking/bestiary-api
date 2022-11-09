@@ -1,0 +1,20 @@
+extends layout
+
+block content
+
+  h1=title
+
+  section.creatures
+    each creature in data
+      - var imageSource = 'images/' + creature.name.replaceAll(' ', '-').toLowerCase() + '.jpg'
+
+      div.creature
+        //img(alt=creature.name, src=creature.image)
+        div.card-image
+          img(alt=creature.name, src=imageSource)
+        div.card-content
+          span= creature.state
+          h2= creature.name
+          div.content
+          p !{creature.desc}
+            
