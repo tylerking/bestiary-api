@@ -18,49 +18,49 @@ const routes = require ('./routes/records')
 app.use('/api', routes)
 
 app.get('/', (req, res) => {
-	const dbConnect = dbo.getDb()
+  const dbConnect = dbo.getDb()
 
-	dbConnect
-		.collection('creatures')
-		.find({})
-		.limit(99)
-		.toArray((err, result) => {
-			if (err) {
-				res.status(400).send('Unable to fetch creatures')
-			} else {
-				res.render('index', { 
-					title: 'American Bestiary', 
-					data: result 
-				})
-			}
-		})  
+  dbConnect
+    .collection('creatures')
+    .find({})
+    .limit(99)
+    .toArray((err, result) => {
+      if (err) {
+        res.status(400).send('Unable to fetch creatures')
+      } else {
+        res.render('index', { 
+          title: 'American Bestiary', 
+          data: result 
+        })
+      }
+    })  
 })
 
 // if no routes are found use this middleware
 app.use((req, res, next) => {
-	const err = new Error('Not Found')
-	err.status = 404
-	next(err)
+  const err = new Error('Not Found')
+  err.status = 404
+  next(err)
 })
 
 app.use((err, req, res) => {
-	res.status(err.status || 500)
-	res.json({
-		error: {
-			message: err.message
-		}
-	})
+  res.status(err.status || 500)
+  res.json({
+    error: {
+      message: err.message
+    }
+  })
 })
 
 // connect to database on server start
 dbo.connectToServer((err) => {
-	if (err) {
-		console.error(err)
-		process.exit()
-	}
+  if (err) {
+    console.error(err)
+    process.exit()
+  }
 
-	// start Express server
-	app.listen(PORT, () => {
-		console.log(`Server running on port: ${PORT}`)
-	})
+  // start Express server
+  app.listen(PORT, () => {
+    console.log(`Server running on port: ${PORT}`)
+  })
 })
