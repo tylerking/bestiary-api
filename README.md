@@ -18,7 +18,7 @@ An API of legendary creatures from North America.
 ## Install
 - Clone the repo
 - Visit project folder from terminal
-- Type 'run npm server'
+- Type 'npm run server'
 
 ### Built With
 - [Express](https://expressjs.com)
